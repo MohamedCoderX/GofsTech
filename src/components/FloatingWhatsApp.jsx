@@ -22,7 +22,7 @@ export const FloatingWhatsApp = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.a
-          href="https://wa.me/918667784624"
+          href="https://wa.me/916374270471"
           target="_blank"
           rel="noopener noreferrer"
           initial={{ opacity: 0, scale: 0.5, y: 50 }}

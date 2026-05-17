@@ -39,9 +39,9 @@ export const Footer = () => {
             </p>
             
             <div className="space-y-3 mb-8">
-              <a href="tel:+918667784624" className="flex items-center justify-center lg:justify-start gap-3 text-[var(--text-muted)] hover:text-primary transition-colors">
+              <a href="tel:+916374270471" className="flex items-center justify-center lg:justify-start gap-3 text-[var(--text-muted)] hover:text-primary transition-colors">
                 <Phone className="w-4 h-4 text-[#0D6EFD]" />
-                <span className="text-sm">+91 86677 84624</span>
+                <span className="text-sm">+91 63742 70471</span>
               </a>
               <a href="mailto:hello@gofstech.com" className="flex items-center justify-center lg:justify-start gap-3 text-[var(--text-muted)] hover:text-primary transition-colors">
                 <Mail className="w-4 h-4 text-[#0D6EFD]" />

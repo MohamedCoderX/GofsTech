@@ -93,7 +93,7 @@ export const Hero = () => {
             <Phone size={12} className="text-[#0D6EFD]" />
             <span>Call us</span>
             <div className="w-1.5 h-1.5 rounded-full bg-[var(--card-border)]" />
-            <span className="text-[var(--text-color)] tracking-widest">+91 86677 84624</span>
+            <span className="text-[var(--text-color)] tracking-widest">+91 63742 70471</span>
           </motion.div>
 
           {/* Stats Grid */}

@@ -50,7 +50,7 @@ function AboutPage() {
               Our Journey
             </h2>
             <p className="text-[var(--text-muted)] leading-relaxed text-left mt-6">
-              At GOFS Tech, our journey started with a simple goal and one determined founder — <strong>Mohamed Ibrahim</strong>.
+              At GOFS Tech, our journey started with a simple goal and one determined founder — <strong>Group Of Friends</strong>.
             </p>
             <p className="text-[var(--text-muted)] leading-relaxed text-left mt-6">
               What began as a small freelancing journey slowly turned into a growing creative tech team driven by passion, learning, and consistency. In the early days, Mohamed started by approaching people through Telegram groups, searching for anyone who needed a website. There were failures, ignored messages, and even clients who disappeared after work was completed — but every setback became motivation to improve.

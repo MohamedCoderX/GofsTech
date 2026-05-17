@@ -12,9 +12,9 @@ function ContactPage() {
   };
 
   const contactInfo = [
-    { icon: <Phone />, label: 'Phone', value: '+91 86677 84624', href: 'tel:+918667784624' },
+    { icon: <Phone />, label: 'Phone', value: '+91 63742 70471', href: 'tel:+916374270471' },
     { icon: <Mail />, label: 'Email', value: 'hello@gofstech.com', href: 'mailto:hello@gofstech.com' },
-    { icon: <MessageCircle />, label: 'WhatsApp', value: '+91 86677 84624', href: 'https://wa.me/918667784624' },
+    { icon: <MessageCircle />, label: 'WhatsApp', value: '+91 63742 70471', href: 'https://wa.me/916374270471' },
     { icon: <MapPin />, label: 'Location', value: 'India', href: null },
     { icon: <Clock />, label: 'Business Hours', value: 'Mon - Sat: 9AM - 7PM', href: null }
   ];
