@@ -1,6 +1,25 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Globe, Smartphone, Code, Bot, Megaphone, Cloud, BarChart3, Zap, Shield, Rocket } from 'lucide-react';
+import { SEOHead } from '../hooks/useSEO';
+
+const servicesPageStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "GOFS Tech Digital Services",
+  "description": "All digital services offered by GOFS Tech",
+  "url": "https://gofstech.com/services",
+  "numberOfItems": 6,
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Web Development", "url": "https://gofstech.com/services/web-development" },
+    { "@type": "ListItem", "position": 2, "name": "App Development", "url": "https://gofstech.com/services/app-development" },
+    { "@type": "ListItem", "position": 3, "name": "Software Development", "url": "https://gofstech.com/services/software-development" },
+    { "@type": "ListItem", "position": 4, "name": "AI & Automation", "url": "https://gofstech.com/services/ai-automation" },
+    { "@type": "ListItem", "position": 5, "name": "Digital Marketing", "url": "https://gofstech.com/services/digital-marketing" },
+    { "@type": "ListItem", "position": 6, "name": "Cloud Solutions", "url": "https://gofstech.com/services/cloud-solutions" }
+  ]
+};
+
 
 const services = [
   {
@@ -67,6 +86,14 @@ const services = [
 
 function ServicesPage() {
   return (
+    <>
+      <SEOHead
+        title="Our Services – Web, App, AI & Digital Marketing"
+        description="Explore GOFS Tech's full range of digital services: custom web development, mobile apps, AI automation, digital marketing, software development, and cloud solutions."
+        path="/services"
+        keywords="web development services India, app development agency, AI automation solutions, digital marketing agency, custom software, cloud solutions"
+        structuredData={servicesPageStructuredData}
+      />
     <div className="min-h-screen bg-transparent pt-32 pb-20">
       <div className="container mx-auto px-6">
         <motion.div
@@ -139,6 +166,7 @@ function ServicesPage() {
         </motion.div>
       </div>
     </div>
+    </>
   );
 }
 

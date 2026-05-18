@@ -1,6 +1,29 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle, MessageCircle, Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { SEOHead } from '../hooks/useSEO';
+
+const contactStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact GOFS Tech",
+  "url": "https://gofstech.com/contact",
+  "description": "Get in touch with GOFS Tech for web development, app development, AI automation, and digital marketing services. We respond within 24 hours.",
+  "inLanguage": "en-IN",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gofstech.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://gofstech.com/contact" }
+    ]
+  },
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "GOFS Tech",
+    "telephone": "+91-63742-70471",
+    "email": "hello@gofstech.com"
+  }
+};
 
 function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -20,6 +43,14 @@ function ContactPage() {
   ];
 
   return (
+    <>
+      <SEOHead
+        title="Contact Us – Get a Free Consultation"
+        description="Ready to start your project? Contact GOFS Tech for a free consultation on web development, app development, AI automation, or digital marketing. We respond within 24 hours."
+        path="/contact"
+        keywords="contact GOFS Tech, hire web developer India, free consultation digital agency, website quote India"
+        structuredData={contactStructuredData}
+      />
     <div className="min-h-screen bg-transparent pt-32 pb-20">
       <div className="container mx-auto px-6">
         <motion.div
@@ -155,6 +186,7 @@ function ContactPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

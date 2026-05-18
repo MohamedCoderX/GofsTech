@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, CheckCircle, ArrowUpRight, Rocket, Shield, Zap, BarChart3, Globe, Code, Bot, Megaphone, Cloud, Smartphone, Target, TrendingUp, Users, Clock, MessageSquare, ShoppingCart, Server, Workflow, Search, PenTool, Database, Lock } from 'lucide-react';
+import { SEOHead } from '../hooks/useSEO';
 
 const servicesData = {
   'web-development': {
@@ -206,7 +207,37 @@ function ServiceDetail() {
     );
   }
 
+  const serviceStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": service.title,
+    "description": service.description,
+    "url": `https://gofstech.com/services/${slug}`,
+    "provider": {
+      "@type": "Organization",
+      "name": "GOFS Tech",
+      "url": "https://gofstech.com"
+    },
+    "areaServed": { "@type": "Country", "name": "India" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gofstech.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://gofstech.com/services" },
+        { "@type": "ListItem", "position": 3, "name": service.title, "item": `https://gofstech.com/services/${slug}` }
+      ]
+    }
+  };
+
   return (
+    <>
+      <SEOHead
+        title={`${service.title} – ${service.subtitle}`}
+        description={service.description}
+        path={`/services/${slug}`}
+        keywords={`${service.title.toLowerCase()} India, ${service.title.toLowerCase()} agency, GOFS Tech ${service.title.toLowerCase()}, hire ${service.title.toLowerCase()}`}
+        structuredData={serviceStructuredData}
+      />
     <div className="min-h-screen bg-transparent pt-32 pb-20">
       <div className="container mx-auto px-6">
         <Link to="/services" className="inline-flex items-center text-[var(--text-muted)] hover:text-[#0D6EFD] mb-12 transition-colors font-mono text-xs uppercase tracking-widest">
@@ -309,6 +340,7 @@ function ServiceDetail() {
         </motion.div>
       </div>
     </div>
+    </>
   );
 }
 

@@ -3,6 +3,32 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight, Users, Target, Zap, Award, CheckCircle, TrendingUp, Globe, Mail, Phone } from 'lucide-react';
 import gofsLogo from '../assets/gofs-logo.png';
 import gofsWord from '../assets/gofs-word.jpg';
+import { SEOHead } from '../hooks/useSEO';
+
+const aboutStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About GOFS Tech – Our Story",
+  "url": "https://gofstech.com/about",
+  "description": "Learn the story of GOFS Tech — a digital agency founded from passion, persistence and friendship. From HTML freelancing to full-stack MERN solutions.",
+  "inLanguage": "en-IN",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gofstech.com/" },
+      { "@type": "ListItem", "position": 2, "name": "About", "item": "https://gofstech.com/about" }
+    ]
+  },
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "GOFS Tech",
+    "alternateName": "Group of Friends Solutions",
+    "foundingDate": "2021",
+    "founder": { "@type": "Person", "name": "Mohamed Ibrahim" },
+    "url": "https://gofstech.com",
+    "logo": "https://gofstech.com/gofs-logo.png"
+  }
+};
 
 function AboutPage() {
   const stats = [
@@ -22,6 +48,14 @@ function AboutPage() {
   ];
 
   return (
+    <>
+      <SEOHead
+        title="About Us – Our Story & Mission"
+        description="GOFS Tech was founded by Mohamed Ibrahim — from Telegram cold DMs to full-stack MERN solutions. Discover our journey, team, and capabilities in web, app, AI & digital marketing."
+        path="/about"
+        keywords="about GOFS Tech, Mohamed Ibrahim, digital agency story, MERN stack team India, web development company"
+        structuredData={aboutStructuredData}
+      />
     <div className="min-h-screen bg-transparent pt-32 pb-20">
       <div className="container mx-auto px-6">
         <motion.div
@@ -142,6 +176,7 @@ function AboutPage() {
         </motion.div>
       </div>
     </div>
+    </>
   );
 }
 

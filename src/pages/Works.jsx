@@ -1,6 +1,7 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, ExternalLink } from 'lucide-react';
+import { SEOHead } from '../hooks/useSEO';
 import aimaireImg from '../assets/works/aimaire.png';
 import nancyImg from '../assets/works/nancy.png';
 import ritualsImg from '../assets/works/rituals.png';
@@ -193,8 +194,32 @@ function ProjectCard({ project, index }) {
   );
 }
 
+const worksStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "GOFS Tech Portfolio – Our Works",
+  "url": "https://gofstech.com/works",
+  "description": "Browse GOFS Tech's portfolio of completed websites, mobile apps, and AI automation projects across multiple industries.",
+  "inLanguage": "en-IN",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gofstech.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Works", "item": "https://gofstech.com/works" }
+    ]
+  }
+};
+
 function WorksPage() {
   return (
+    <>
+      <SEOHead
+        title="Portfolio – Digital Projects We've Built"
+        description="Explore GOFS Tech's portfolio: e-commerce platforms, corporate websites, React apps, AI automations and more — built for real clients across industries."
+        path="/works"
+        keywords="GOFS Tech portfolio, web development projects, e-commerce websites, React projects India, digital agency work"
+        structuredData={worksStructuredData}
+      />
     <div className="min-h-screen bg-transparent pt-32 pb-20">
       <div className="container mx-auto px-6">
         <motion.div
@@ -296,6 +321,7 @@ function WorksPage() {
         </motion.div>
       </div>
     </div>
+    </>
   );
 }
 
