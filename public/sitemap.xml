@@ -1,68 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+>
+  <!-- ══ Home ═══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://gofstech.com/</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://gofstech.com/og-image.png</image:loc>
+      <image:title>GOFS Tech – Premium Digital Agency</image:title>
+      <image:caption>Group of Friends Solutions – Web, App & AI Solutions</image:caption>
+    </image:image>
   </url>
+
+  <!-- ══ Services hub ═══════════════════════════════════════════════════ -->
   <url>
     <loc>https://gofstech.com/services</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- ══ Service detail pages ══════════════════════════════════════════ -->
   <url>
     <loc>https://gofstech.com/services/web-development</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://gofstech.com/services/app-development</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://gofstech.com/services/software-development</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://gofstech.com/services/ai-automation</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://gofstech.com/services/digital-marketing</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://gofstech.com/services/cloud-solutions</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
+
+  <!-- ══ Portfolio ══════════════════════════════════════════════════════ -->
   <url>
     <loc>https://gofstech.com/works</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://gofstech.com/saas_dashboard_preview.png</image:loc>
+      <image:title>GOFS Tech Portfolio</image:title>
+      <image:caption>Our completed web and app development projects</image:caption>
+    </image:image>
   </url>
+
+  <!-- ══ About ══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://gofstech.com/about</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- ══ Contact ════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://gofstech.com/contact</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

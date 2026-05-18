@@ -1,10 +1,40 @@
+# GOFS Tech – robots.txt
+# https://gofstech.com/robots.txt
+
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /*.json$
+Crawl-delay: 1
 
-Sitemap: https://gofstech.com/sitemap.xml
-
+# Google
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
+# Google Images
+User-agent: Googlebot-Image
+Allow: /
+
+# Bing
 User-agent: Bingbot
 Allow: /
+
+# LinkedIn
+User-agent: LinkedInBot
+Allow: /
+
+# Facebook
+User-agent: facebookexternalhit
+Allow: /
+
+# Twitter
+User-agent: Twitterbot
+Allow: /
+
+# WhatsApp
+User-agent: WhatsApp
+Allow: /
+
+# Sitemap
+Sitemap: https://gofstech.com/sitemap.xml
