@@ -17,29 +17,15 @@ export const Hero = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(13,110,253,0.15),transparent_50%)] z-10" />
       </div>
       
-      {/* Floating Blobs */}
-      <motion.div 
-        animate={{ 
-          y: [0, -20, 0],
-          x: [0, 10, 0]
-        }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#0D6EFD]/10 rounded-full blur-[120px] pointer-events-none z-10" 
-      />
-      <motion.div 
-        animate={{ 
-          y: [0, 20, 0],
-          x: [0, -10, 0]
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#1D4ED8]/10 rounded-full blur-[120px] pointer-events-none z-10" 
-      />
+      {/* Static Blobs (prevents lag and reduces animation workload) */}
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#0D6EFD]/10 rounded-full blur-[120px] pointer-events-none z-10" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#1D4ED8]/10 rounded-full blur-[120px] pointer-events-none z-10" />
       
       <div className="container relative z-20 px-6 mx-auto text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.4 }}
         >
           {/* Motto & Quote */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#0D6EFD]/10 border border-[#0D6EFD]/30 text-[#0D6EFD] text-[11px] font-bold tracking-[0.2em] uppercase mb-6 font-mono">
@@ -51,10 +37,10 @@ export const Hero = () => {
           </motion.div>
            
           <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.215, 0.61, 0.355, 1] }}
+            transition={{ duration: 0.4, delay: 0.1 }}
             className="mb-10 leading-[1.05] max-w-7xl mx-auto tracking-tight text-4xl md:text-8xl font-black"
             style={{ fontFamily: "'Unbounded', sans-serif" }}
           >
@@ -87,7 +73,7 @@ export const Hero = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.9, duration: 1 }}
+            transition={{ delay: 0.3, duration: 0.4 }}
             className="mt-20 flex items-center justify-center gap-5 text-[var(--text-muted)] font-mono text-[10px] tracking-[0.3em] uppercase"
           >
             <Phone size={12} className="text-[#0D6EFD]" />
@@ -106,10 +92,10 @@ export const Hero = () => {
             ].map((stat, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 1.1 + (i * 0.1) }}
+                transition={{ delay: 0.2 + (i * 0.05), duration: 0.4 }}
                 className="flex flex-col items-center gap-4"
               >
                 <div className="text-5xl md:text-7xl font-bold tracking-tight" style={{ fontFamily: "'Unbounded', system-ui, sans-serif" }}>

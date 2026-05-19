@@ -146,10 +146,10 @@ export const Services = () => {
           </div>
 
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }}
+              transition={{ duration: 0.4 }}
               className="text-3xl md:text-7xl font-black text-[var(--text-color)] leading-[0.95] tracking-tight"
             >
               Full-stack <br /> solutions to <br />
@@ -168,10 +168,10 @@ export const Services = () => {
           {services.map((service, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ duration: 0.3, delay: i * 0.05 }}
               className={service.span}
             >
               <ServiceCard service={service} />

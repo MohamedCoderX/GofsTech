@@ -27,42 +27,33 @@ export const Navbar = () => {
   ];
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 px-4 py-6 md:px-8 pointer-events-none">
-      <nav
-        className={cn(
-          "max-w-[1280px] mx-auto flex items-center justify-between pointer-events-auto",
-          "transition-all duration-500 ease-in-out px-6 py-3",
-          "glass shadow-sm rounded-none",
-          isScrolled ? "translate-y-1 shadow-xl bg-transparent/80 dark:bg-transparent/80" : "translate-y-0"
-        )}
-      >
+    <header
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full",
+        isScrolled
+          ? "bg-[var(--glass-bg)] backdrop-blur-md border-b border-[var(--card-border)] py-4 shadow-lg"
+          : "bg-transparent py-6"
+      )}
+    >
+      <nav className="max-w-[1280px] mx-auto flex items-center justify-between px-6 md:px-8 relative">
         {/* Logo */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-        >
+        <div className="flex items-center gap-3">
           <Link to="/" className="flex items-center gap-3">
-            <img src={logo} alt="logo" className="w-10 " />
+            <img src={logo} alt="logo" className="w-10" />
           </Link>
-        </motion.div>
+        </div>
 
         {/* Desktop Links - Centered - JetBrains Mono */}
         <div className="hidden md:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
-          {navLinks.map((link, i) => (
-            <motion.div
+          {navLinks.map((link) => (
+            <Link
               key={link.name}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
+              to={link.href}
+              className="text-[11px] font-bold tracking-[0.2em] text-[var(--text-muted)] hover:text-[#0D6EFD] transition-all duration-300 relative group font-mono uppercase"
             >
-              <Link
-                to={link.href}
-                className="text-[11px] font-bold tracking-[0.2em] text-[var(--text-muted)] hover:text-[#0D6EFD] transition-all duration-300 relative group font-mono uppercase"
-              >
-                {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-[#0D6EFD] transition-all duration-300 group-hover:w-full" />
-              </Link>
-            </motion.div>
+              {link.name}
+              <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-[#0D6EFD] transition-all duration-300 group-hover:w-full" />
+            </Link>
           ))}
         </div>
 
@@ -91,13 +82,13 @@ export const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="md:hidden mt-6 px-2 pointer-events-auto"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden w-full overflow-hidden mt-4"
           >
-            <div className="bg-[var(--glass-bg)] backdrop-blur-2xl border border-[var(--card-border)] shadow-2xl p-8 flex flex-col items-center gap-8 rounded-none">
-              <nav className="flex flex-col items-center gap-6 font-mono">
+            <div className="bg-[var(--glass-bg)] backdrop-blur-2xl border-t border-[var(--card-border)] p-8 flex flex-col items-center gap-8 font-mono">
+              <nav className="flex flex-col items-center gap-6">
                 {navLinks.map((item) => (
                   <Link
                     key={item.name}
@@ -128,7 +119,7 @@ export const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </header>
   );
 };
 

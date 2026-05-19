@@ -144,10 +144,10 @@ export const Work = () => {
             </div>
 
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.4 }}
               className="text-3xl md:text-7xl font-black text-[var(--text-color)] leading-[0.95] tracking-tight"
             >
               Building <br />
@@ -165,10 +165,10 @@ export const Work = () => {
           {projects.map((project, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: i * 0.1 }}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
             >
               <ProjectCard project={project} />
             </motion.div>

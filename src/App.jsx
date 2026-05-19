@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import { Navbar } from './sections/Navbar';
@@ -16,6 +16,7 @@ import Works from './pages/Works';
 
 function App() {
   const location = useLocation();
+  const lenisRef = useRef(null);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -28,6 +29,8 @@ function App() {
       infinite: false,
     });
 
+    lenisRef.current = lenis;
+
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -37,11 +40,16 @@ function App() {
 
     return () => {
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
     window.history.scrollRestoration = 'manual';
   }, [location.pathname]);
 
@@ -52,23 +60,30 @@ function App() {
       threshold: 0.1
     };
 
-    const handleIntersect = (entries) => {
+    const handleIntersect = (entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('reveal-visible');
+          obs.unobserve(entry.target);
         }
       });
     };
 
-    const observer = new IntersectionObserver(handleIntersect, observerOptions);
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    let observer;
+    const timer = setTimeout(() => {
+      observer = new IntersectionObserver(handleIntersect, observerOptions);
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }, 100);
 
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      clearTimeout(timer);
+      if (observer) observer.disconnect();
+    };
+  }, [location.pathname]);
 
   return (
     <ThemeProvider>
-      <div className="relative min-h-screen transition-colors duration-500 overflow-hidden">
+      <div className="relative min-h-screen transition-colors duration-500 overflow-x-hidden">
         <Navbar />
         <main className="relative z-10">
           <Routes>
