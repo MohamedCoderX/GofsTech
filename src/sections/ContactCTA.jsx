@@ -28,7 +28,7 @@ export const ContactCTA = () => {
       icon: <Mail className="w-6 h-6" />,
       label: 'DROP US AN EMAIL',
       title: 'Email',
-      value: 'hello@gofstech.com',
+      value: 'gofstechnology@gmail.com',
       action: 'Send Email',
       accentColor: '#0D6EFD',
       textClass: 'text-primary',

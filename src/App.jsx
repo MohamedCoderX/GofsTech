@@ -1,6 +1,5 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import Lenis from 'lenis';
 import { Navbar } from './sections/Navbar';
 import { Footer } from './sections/Footer';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
@@ -16,40 +15,9 @@ import Works from './pages/Works';
 
 function App() {
   const location = useLocation();
-  const lenisRef = useRef(null);
 
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      infinite: false,
-    });
-
-    lenisRef.current = lenis;
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-      lenisRef.current = null;
-    };
-  }, []);
-
-  useEffect(() => {
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo(0, 0);
-    }
+    window.scrollTo(0, 0);
     window.history.scrollRestoration = 'manual';
   }, [location.pathname]);
 
