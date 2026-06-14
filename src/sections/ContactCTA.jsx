@@ -13,6 +13,7 @@ export const ContactCTA = () => {
       accentColor: '#0D6EFD',
       textClass: 'text-primary',
       bgHoverClass: 'group-hover:bg-primary',
+      href: 'https://wa.me/916374270471',
     },
     {
       icon: <Phone className="w-6 h-6" />,
@@ -23,6 +24,7 @@ export const ContactCTA = () => {
       accentColor: '#1D4ED8',
       textClass: 'text-secondary',
       bgHoverClass: 'group-hover:bg-secondary',
+      href: 'tel:+916374270471',
     },
     {
       icon: <Mail className="w-6 h-6" />,
@@ -33,6 +35,7 @@ export const ContactCTA = () => {
       accentColor: '#0D6EFD',
       textClass: 'text-primary',
       bgHoverClass: 'group-hover:bg-primary',
+      href: 'mailto:gofstechnology@gmail.com',
     }
   ];
 
@@ -66,27 +69,34 @@ export const ContactCTA = () => {
               transition={{ delay: i * 0.1 }}
               className="h-full"
             >
-              <Card
-                hover={false}
-                glowColor={contact.accentColor}
-                className="h-full text-left p-8 md:p-12 rounded-none bg-[var(--card-bg)] border border-[var(--card-border)] shadow-lg hover:shadow-[0_0_20px_rgba(217,255,0,0.3)] relative group cursor-pointer transition-all"
+              <a
+                href={contact.href}
+                target={contact.title === 'WhatsApp' ? '_blank' : undefined}
+                rel={contact.title === 'WhatsApp' ? 'noopener noreferrer' : undefined}
+                className="block h-full text-inherit no-underline"
               >
-                <div className={`relative z-10 w-12 h-12 rounded-none bg-[var(--tag-bg)] flex items-center justify-center mb-10 group-hover:scale-110 transition-all duration-500 group-hover:text-white ${contact.textClass} ${contact.bgHoverClass}`}>
-                  {contact.icon}
-                </div>
+                <Card
+                  hover={false}
+                  glowColor={contact.accentColor}
+                  className="h-full text-left p-8 md:p-12 rounded-none bg-[var(--card-bg)] border border-[var(--card-border)] shadow-lg hover:shadow-[0_0_20px_rgba(217,255,0,0.3)] relative group cursor-pointer transition-all"
+                >
+                  <div className={`relative z-10 w-12 h-12 rounded-none bg-[var(--tag-bg)] flex items-center justify-center mb-10 group-hover:scale-110 transition-all duration-500 group-hover:text-white ${contact.textClass} ${contact.bgHoverClass}`}>
+                    {contact.icon}
+                  </div>
 
-                <p className="relative z-10 text-[10px] font-bold tracking-[0.3em] text-[var(--text-muted)] uppercase mb-4 font-mono">{contact.label}</p>
-                <h3 className="relative z-10 text-3xl font-black text-[var(--text-color)] mb-2 tracking-tight">{contact.title}</h3>
-                <p className="relative z-10 text-sm font-medium text-[var(--text-muted)] mb-10">{contact.value}</p>
+                  <p className="relative z-10 text-[10px] font-bold tracking-[0.3em] text-[var(--text-muted)] uppercase mb-4 font-mono">{contact.label}</p>
+                  <h3 className="relative z-10 text-3xl font-black text-[var(--text-color)] mb-2 tracking-tight">{contact.title}</h3>
+                  <p className="relative z-10 text-sm font-medium text-[var(--text-muted)] mb-10">{contact.value}</p>
 
-                <div className={`relative z-10 flex items-center gap-2 font-bold text-[10px] uppercase tracking-widest group-hover:gap-4 transition-all duration-300 font-mono ${contact.textClass}`}>
-                  {contact.action} <ArrowUpRight className="w-3.5 h-3.5" />
-                </div>
+                  <div className={`relative z-10 flex items-center gap-2 font-bold text-[10px] uppercase tracking-widest group-hover:gap-4 transition-all duration-300 font-mono ${contact.textClass}`}>
+                    {contact.action} <ArrowUpRight className="w-3.5 h-3.5" />
+                  </div>
 
-                <div className="absolute top-8 right-8 opacity-20 group-hover:opacity-40 transition-opacity z-10">
-                  <ArrowUpRight className="w-5 h-5 text-[var(--text-color)]" />
-                </div>
-              </Card>
+                  <div className="absolute top-8 right-8 opacity-20 group-hover:opacity-40 transition-opacity z-10">
+                    <ArrowUpRight className="w-5 h-5 text-[var(--text-color)]" />
+                  </div>
+                </Card>
+              </a>
             </motion.div>
           ))}
         </div>

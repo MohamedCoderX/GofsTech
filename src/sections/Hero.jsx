@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Phone, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '../components/Button';
 
 export const Hero = () => {
@@ -55,17 +56,21 @@ export const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-            <Button 
-              className="w-full sm:w-auto bg-[#0D6EFD] text-white px-8 py-5 h-auto text-[13px] tracking-[0.1em] font-bold rounded-none"
-            >
-              Book Free Consultation <ArrowUpRight className="w-4 h-4 ml-1" />
-            </Button>
-            <Button 
-              variant="outline"
-              className="w-full sm:w-auto border-white/20 text-white px-8 py-5 h-auto text-[13px] tracking-[0.1em] font-bold rounded-none hover:bg-white/5"
-            >
-              View Our Services <ArrowUpRight className="w-4 h-4 ml-1 opacity-60" />
-            </Button>
+            <Link to="/contact" className="w-full sm:w-auto">
+              <Button 
+                className="w-full bg-[#0D6EFD] text-white px-8 py-5 h-auto text-[13px] tracking-[0.1em] font-bold rounded-none"
+              >
+                Book Free Consultation <ArrowUpRight className="w-4 h-4 ml-1" />
+              </Button>
+            </Link>
+            <Link to="/services" className="w-full sm:w-auto">
+              <Button 
+                variant="outline"
+                className="w-full border-white/20 text-white px-8 py-5 h-auto text-[13px] tracking-[0.1em] font-bold rounded-none hover:bg-white/5"
+              >
+                View Our Services <ArrowUpRight className="w-4 h-4 ml-1 opacity-60" />
+              </Button>
+            </Link>
           </div>
 
           {/* Contact Line */}
@@ -79,7 +84,7 @@ export const Hero = () => {
             <Phone size={12} className="text-[#0D6EFD]" />
             <span>Call us</span>
             <div className="w-1.5 h-1.5 rounded-full bg-[var(--card-border)]" />
-            <span className="text-[var(--text-color)] tracking-widest">+91 63742 70471</span>
+            <a href="tel:+916374270471" className="text-[var(--text-color)] hover:text-[#0D6EFD] transition-colors tracking-widest">+91 63742 70471</a>
           </motion.div>
 
           {/* Stats Grid */}

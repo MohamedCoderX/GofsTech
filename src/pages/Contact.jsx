@@ -101,9 +101,19 @@ function ContactPage() {
                 <div className="pt-8 border-t border-[var(--card-border)]">
                   <h3 className="text-sm font-black text-[var(--text-color)] uppercase tracking-widest mb-6 font-mono">Follow Us</h3>
                   <div className="flex gap-4">
-                    {['LinkedIn', 'Twitter', 'Instagram'].map((social) => (
-                      <a key={social} href="#" className="px-6 py-3 bg-[var(--tag-bg)] text-[var(--text-muted)] text-[10px] font-bold uppercase tracking-widest border border-[var(--tag-border)] hover:border-[#0D6EFD] hover:text-[#0D6EFD] transition-all rounded-none font-mono">
-                        {social}
+                    {[
+                      { name: 'LinkedIn', href: 'https://linkedin.com' },
+                      { name: 'Twitter', href: 'https://x.com/gofstech' },
+                      { name: 'Instagram', href: 'https://instagram.com/gofs_tech' }
+                    ].map((social) => (
+                      <a 
+                        key={social.name} 
+                        href={social.href} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="px-6 py-3 bg-[var(--tag-bg)] text-[var(--text-muted)] text-[10px] font-bold uppercase tracking-widest border border-[var(--tag-border)] hover:border-[#0D6EFD] hover:text-[#0D6EFD] transition-all rounded-none font-mono"
+                      >
+                        {social.name}
                       </a>
                     ))}
                   </div>

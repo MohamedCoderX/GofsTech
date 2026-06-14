@@ -4,7 +4,7 @@ import { Plus, Minus } from 'lucide-react';
 import { Card } from '../components/Card';
 
 export const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState(0);
 
   const faqs = [
     {
