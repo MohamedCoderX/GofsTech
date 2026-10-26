@@ -1,19 +1,16 @@
 {
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/works", "destination": "/work", "permanent": true },
+    { "source": "/services/cloud-solutions", "destination": "/services/software-development", "permanent": true },
+    { "source": "/services/digital-marketing", "destination": "/services/social-media-management", "permanent": true },
+    { "source": "/pricing", "destination": "/contact", "permanent": false }
   ],
   "headers": [
     {
-      "source": "/(.*).(jpg|jpeg|png|svg|webp|mp4|opus|mp3|pdf)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     }
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "slides": [
+    {"kind": "cover", "kicker": "Website tips", "title": "Customers leave your website in", "accent": "5 seconds.", "body": "Here are the 5 reasons why — and how to fix each one."},
+    {"kind": "point", "num": "01", "title": "It loads too slowly", "body": "Many visitors leave if a page takes more than about 3 seconds on a phone.", "fix": "Compress images, use good hosting and remove heavy plugins."},
+    {"kind": "point", "num": "02", "title": "It's hard to use on a phone", "body": "Most visitors come from mobile. Tiny text and tiny buttons make them leave.", "fix": "Open your site on your own phone today. Can you tap every button with your thumb?"},
+    {"kind": "point", "num": "03", "title": "They can't tell what you do", "body": "If the first screen only says \"Welcome\", visitors are confused and go back.", "fix": "One clear line: what you sell + who it's for + where."},
+    {"kind": "point", "num": "04", "title": "No easy way to contact you", "body": "No WhatsApp button, no phone number, and the form is hidden at the bottom.", "fix": "Add a WhatsApp or call button that is always visible."},
+    {"kind": "point", "num": "05", "title": "It looks old or untrusted", "body": "Old design, broken links, no real photos and no proof of work.", "fix": "Real photos, a clean layout and real proof: your work, reviews and years in business."},
+    {"kind": "list", "title": "Quick check for your website", "items": ["Loads in under 3 seconds", "Works well on a phone", "Says clearly what you do", "Has a WhatsApp or call button", "Looks current and trustworthy"]},
+    {"kind": "cta", "title": "Not sure how your site scores?", "accent": "Comment AUDIT", "body": "We'll send you a free 2-minute video review of your website.", "button": "Comment AUDIT"}
+  ]
+}
