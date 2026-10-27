@@ -1,203 +1,182 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Send, CheckCircle, MessageCircle, Phone, Mail, MapPin, Clock } from 'lucide-react';
-import { SEOHead } from '../hooks/useSEO';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { ArrowUpRight, CheckCircle2, Lock } from 'lucide-react';
+import { Button, Price, CurrencyToggle } from '../components/ui';
+import { Reveal } from '../components/motion';
+import { SITE, whatsappLink } from '../data/site';
+import { SERVICES } from '../data/services';
+import { PRICE_GUIDE, PAYMENT_TERMS } from '../data/pricing';
+import { cn } from '../utils/cn';
 
-const contactStructuredData = {
-  "@context": "https://schema.org",
-  "@type": "ContactPage",
-  "name": "Contact GOFS Tech",
-  "url": "https://gofstech.com/contact",
-  "description": "Get in touch with GOFS Tech for web development, app development, AI automation, and digital marketing services. We respond within 24 hours.",
-  "inLanguage": "en-IN",
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gofstech.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://gofstech.com/contact" }
-    ]
-  },
-  "mainEntity": {
-    "@type": "Organization",
-    "name": "GOFS Tech",
-    "telephone": "+91-63742-70471",
-    "email": "gofstechnology@gmail.com"
-  }
-};
+// Optional: set VITE_WEB3FORMS_KEY (free at web3forms.com) to receive the form by email.
+// Without it, submitting opens WhatsApp with the message already written.
+const FORM_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
 
-function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
+const BUDGETS = ['Under $1,000 / ₹75k', '$1,000 – $5,000 / ₹75k – ₹4L', '$5,000 – $15,000 / ₹4L – ₹12L', 'Above $15,000 / ₹12L', 'Not sure yet'];
+const EMPTY = { name: '', company: '', email: '', phone: '', country: '', service: '', budget: '', message: '' };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
-  };
+const field = 'w-full rounded-2xl border border-line-2 bg-bg px-4 py-3.5 text-[16px] text-fg outline-none transition-colors placeholder:text-muted focus:border-brand-2';
+const label = 'grid gap-2 text-[14px] text-fg-2';
 
-  const contactInfo = [
-    { icon: <Phone />, label: 'Phone', value: '+91 63742 70471', href: 'tel:+916374270471' },
-    { icon: <Mail />, label: 'Email', value: 'gofstechnology@gmail.com', href: 'mailto:gofstechnology@gmail.com' },
-    { icon: <MessageCircle />, label: 'WhatsApp', value: '+91 63742 70471', href: 'https://wa.me/916374270471' },
-    { icon: <MapPin />, label: 'Location', value: 'India', href: null },
-    { icon: <Clock />, label: 'Business Hours', value: 'Mon - Sat: 9AM - 7PM', href: null }
-  ];
-
+function PriceGuide({ selected }) {
   return (
-    <>
-      <SEOHead
-        title="Contact Us – Get a Free Consultation"
-        description="Ready to start your project? Contact GOFS Tech for a free consultation on web development, app development, AI automation, or digital marketing. We respond within 24 hours."
-        path="/contact"
-        keywords="contact GOFS Tech, hire web developer India, free consultation digital agency, website quote India"
-        structuredData={contactStructuredData}
-      />
-      <div className="min-h-screen bg-transparent pt-32 pb-20">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#0D6EFD]/10 border border-[#0D6EFD]/30 text-[#0D6EFD] text-[11px] font-medium tracking-[0.15em] uppercase mb-6 font-mono">
-              Contact Us
-            </div>
-            <h1 className="text-4xl md:text-8xl font-black text-[var(--text-color)] tracking-tight mb-6" style={{ fontFamily: "'Unbounded', sans-serif" }}>
-              Let's <span className="text-[#0D6EFD]">Talk</span>
-            </h1>
-            <p className="max-w-2xl mx-auto text-[var(--text-muted)] text-lg leading-relaxed">
-              Have a project in mind? We'd love to hear from you. Fill out the form or reach out directly — our team will get back to you within 24 hours.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="bg-[var(--card-bg)] border border-[var(--card-border)] p-8 md:p-12 rounded-none">
-                <h2 className="text-2xl font-black text-[var(--text-color)] mb-8" style={{ fontFamily: "'Unbounded', sans-serif" }}>Reach Out</h2>
-
-                <div className="space-y-6 mb-10">
-                  {contactInfo.map((info, i) => (
-                    <div key={i} className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-none bg-[var(--tag-bg)] flex items-center justify-center text-[#0D6EFD] flex-shrink-0 border border-[var(--tag-border)]">
-                        {info.icon}
-                      </div>
-                      <div>
-                        <div className="text-[var(--text-muted)] text-xs font-mono uppercase tracking-wider mb-1">{info.label}</div>
-                        {info.href ? (
-                          <a href={info.href} className="text-[var(--text-color)] hover:text-[#0D6EFD] transition-colors">
-                            {info.value}
-                          </a>
-                        ) : (
-                          <span className="text-[var(--text-color)]">{info.value}</span>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="pt-8 border-t border-[var(--card-border)]">
-                  <h3 className="text-sm font-black text-[var(--text-color)] uppercase tracking-widest mb-6 font-mono">Follow Us</h3>
-                  <div className="flex gap-4">
-                    {[
-                      { name: 'LinkedIn', href: 'https://linkedin.com' },
-                      { name: 'Twitter', href: 'https://x.com/gofstech' },
-                      { name: 'Instagram', href: 'https://instagram.com/gofs_tech' }
-                    ].map((social) => (
-                      <a 
-                        key={social.name} 
-                        href={social.href} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="px-6 py-3 bg-[var(--tag-bg)] text-[var(--text-muted)] text-[10px] font-bold uppercase tracking-widest border border-[var(--tag-border)] hover:border-[#0D6EFD] hover:text-[#0D6EFD] transition-all rounded-none font-mono"
-                      >
-                        {social.name}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-            >
-              <div className="bg-[var(--card-bg)] border border-[var(--card-border)] p-8 md:p-12 rounded-none">
-                {submitted ? (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="h-full flex flex-col items-center justify-center text-center py-12"
-                  >
-                    <div className="w-20 h-20 rounded-full bg-[#0D6EFD]/20 flex items-center justify-center mb-6">
-                      <CheckCircle className="text-[#0D6EFD]" size={40} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-[var(--text-color)] mb-4" style={{ fontFamily: "'Unbounded', sans-serif" }}>Message Sent!</h3>
-                    <p className="text-[var(--text-muted)]">Thank you for reaching out. We'll be in touch within 24 hours.</p>
-                  </motion.div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <label className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider font-mono">Full Name</label>
-                        <input
-                          type="text"
-                          required
-                          className="w-full bg-[var(--tag-bg)] border border-[var(--card-border)] px-6 py-4 text-[var(--text-color)] placeholder-[var(--text-muted)] focus:border-[#0D6EFD] outline-none transition-colors rounded-none"
-                          placeholder="John Doe"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider font-mono">Email Address</label>
-                        <input
-                          type="email"
-                          required
-                          className="w-full bg-[var(--tag-bg)] border border-[var(--card-border)] px-6 py-4 text-[var(--text-color)] placeholder-[var(--text-muted)] focus:border-[#0D6EFD] outline-none transition-colors rounded-none"
-                          placeholder="john@example.com"
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider font-mono">Service Interest</label>
-                      <select className="w-full bg-[var(--tag-bg)] border border-[var(--card-border)] px-6 py-4 text-[var(--text-color)] focus:border-[#0D6EFD] outline-none transition-colors appearance-none rounded-none">
-                        <option className="bg-[var(--bg-color)]">Select a Service</option>
-                        <option className="bg-[var(--bg-color)]">Web Development</option>
-                        <option className="bg-[var(--bg-color)]">App Development</option>
-                        <option className="bg-[var(--bg-color)]">Software Development</option>
-                        <option className="bg-[var(--bg-color)]">AI Automation</option>
-                        <option className="bg-[var(--bg-color)]">Digital Marketing</option>
-                        <option className="bg-[var(--bg-color)]">Cloud Solutions</option>
-                        <option className="bg-[var(--bg-color)]">Other</option>
-                      </select>
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider font-mono">Message</label>
-                      <textarea
-                        rows={5}
-                        required
-                        className="w-full bg-[var(--tag-bg)] border border-[var(--card-border)] px-6 py-4 text-[var(--text-color)] placeholder-[var(--text-muted)] focus:border-[#0D6EFD] outline-none transition-colors resize-none rounded-none"
-                        placeholder="Tell us about your project..."
-                      ></textarea>
-                    </div>
-                    <button
-                      type="submit"
-                      className="w-full bg-[#0D6EFD] hover:bg-[#2563EB] text-white font-black py-5 flex items-center justify-center gap-3 transition-all rounded-none uppercase tracking-widest text-xs font-mono hover:shadow-[0_0_20px_rgba(217,255,0,0.4)]"
-                    >
-                      Send Message <Send className="w-5 h-5" />
-                    </button>
-                  </form>
-                )}
-              </div>
-            </motion.div>
-          </div>
+    <div role="status" aria-live="polite">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <CheckCircle2 className="size-7 text-ok" />
+          <h2 className="text-[30px]">Your price guide</h2>
         </div>
+        <CurrencyToggle />
       </div>
-    </>
+      <p className="mt-3 text-fg-2">Thanks — we have your details and will reply within 24 hours. Here are our starting prices; your proposal will have one fixed number.</p>
+      <ul className="mt-8 divide-y divide-line overflow-hidden rounded-2xl border border-line">
+        {PRICE_GUIDE.map((p) => {
+          const hit = SERVICES.find((s) => s.slug === p.slug)?.name === selected;
+          return (
+            <li key={p.slug} className={cn('flex items-center justify-between gap-4 px-5 py-4', hit && 'bg-brand/15')}>
+              <span className={cn('text-[15px]', hit ? 'font-medium text-fg' : 'text-fg-2')}>{p.label}{p.note && <span className="text-muted"> {p.note}</span>}</span>
+              <span className="text-right font-display text-lg font-semibold">
+                <Price inr={p.inr} usd={p.usd} />
+                {p.unit && <span className="block text-xs font-normal text-muted">{p.unit}</span>}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+      <div className="mt-6 grid grid-cols-3 gap-3">
+        {PAYMENT_TERMS.map((t) => (
+          <div key={t.when} className="rounded-2xl border border-line p-4 text-center">
+            <p className="font-display text-2xl font-semibold text-brand-2">{t.pct}</p>
+            <p className="text-xs text-muted">{t.when}</p>
+          </div>
+        ))}
+      </div>
+      <Button href={SITE.whatsapp} className="mt-8 w-full">Talk now on WhatsApp</Button>
+    </div>
   );
 }
 
-export default ContactPage;
+export default function Contact() {
+  const [params] = useSearchParams();
+  const [form, setForm] = useState(EMPTY);
+  const [status, setStatus] = useState('idle');
+
+  // Prefill from links like /contact?service=ai-automation after hydration.
+  useEffect(() => {
+    const service = SERVICES.find((s) => s.slug === params.get('service'));
+    if (service) setForm((f) => ({ ...f, service: service.name }));
+  }, [params]);
+
+  const update = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+
+  const summary = () =>
+    [
+      `Hi GOFS Tech, I'm ${form.name}${form.company ? ` from ${form.company}` : ''}${form.country ? ` (${form.country})` : ''}.`,
+      form.service && `Service: ${form.service}`,
+      form.budget && `Budget: ${form.budget}`,
+      `Email: ${form.email}${form.phone ? ` · Phone: ${form.phone}` : ''}`,
+      '',
+      form.message,
+    ].filter((l) => l !== false && l !== '').join('\n');
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (!FORM_KEY) {
+      window.open(whatsappLink(summary()), '_blank', 'noopener');
+      setStatus('sent');
+      return;
+    }
+    setStatus('sending');
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ access_key: FORM_KEY, subject: `New project: ${form.service || 'General'} — ${form.name}`, from_name: 'gofstech.in', ...form }),
+      });
+      const data = await res.json();
+      setStatus(data.success ? 'sent' : 'error');
+    } catch {
+      setStatus('error');
+    }
+  };
+
+  return (
+    <section className="relative overflow-hidden">
+      <div aria-hidden="true" className="grid-lines absolute inset-0" />
+      <div aria-hidden="true" className="absolute -top-40 left-0 h-[460px] w-[700px] rounded-full bg-brand/10 blur-[140px]" />
+      <div className="container-x relative grid gap-14 pb-24 pt-32 md:pt-40 lg:grid-cols-[0.85fr_1.15fr]">
+        <div>
+          <Reveal><p className="eyebrow">Start a project</p></Reveal>
+          <Reveal delay={80}><h1 className="mt-6 text-[46px] md:text-[80px]">Tell us what you’re <span className="serif text-brand">building.</span></h1></Reveal>
+          <Reveal delay={160}>
+            <p className="mt-7 max-w-md text-lg text-fg-2">
+              Share a few details and our price guide unlocks instantly. Then we reply within 24 hours and send a fixed written proposal within 48 hours of our call.
+            </p>
+          </Reveal>
+          <Reveal delay={220} className="mt-12 space-y-px overflow-hidden rounded-[24px] border border-line bg-line">
+            {[
+              ['WhatsApp', SITE.phone, SITE.whatsapp],
+              ['Email', SITE.email, `mailto:${SITE.email}`],
+              ['Instagram', '@gofs_tech', SITE.instagram],
+              ['Prefer to talk?', 'Book a free 30-minute call', '/book'],
+            ].map(([k, v, href]) => (
+              <a key={k} href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" className="group flex items-center justify-between gap-4 bg-bg px-6 py-5 transition-colors hover:bg-surface">
+                <span><span className="eyebrow block">{k}</span><span className="mt-1 block text-lg">{v}</span></span>
+                <ArrowUpRight className="size-5 text-muted transition-colors group-hover:text-fg" />
+              </a>
+            ))}
+          </Reveal>
+        </div>
+
+        <Reveal delay={120} className="rounded-[32px] border border-line bg-surface elev p-6 backdrop-blur md:p-10">
+          {status === 'sent' ? (
+            <PriceGuide selected={form.service} />
+          ) : (
+            <form onSubmit={onSubmit} className="grid gap-5">
+              <div className="flex items-center gap-3 rounded-2xl border border-line bg-bg px-4 py-3 text-[14px] text-fg-2">
+                <Lock className="size-4 text-brand-2" /> Submit the form to unlock our price guide.
+              </div>
+              <div className="grid gap-5 sm:grid-cols-2">
+                <label className={label}>Your name *<input required name="name" autoComplete="name" value={form.name} onChange={update} className={field} /></label>
+                <label className={label}>Company<input name="company" autoComplete="organization" value={form.company} onChange={update} className={field} /></label>
+                <label className={label}>Work email *<input required type="email" name="email" autoComplete="email" value={form.email} onChange={update} className={field} /></label>
+                <label className={label}>WhatsApp / phone<input name="phone" type="tel" autoComplete="tel" value={form.phone} onChange={update} className={field} /></label>
+                <label className={label}>Country<input name="country" autoComplete="country-name" value={form.country} onChange={update} className={field} /></label>
+                <label className={label}>Budget
+                  <select name="budget" value={form.budget} onChange={update} className={field}>
+                    <option value="">Choose a range</option>
+                    {BUDGETS.map((b) => <option key={b}>{b}</option>)}
+                  </select>
+                </label>
+              </div>
+              <fieldset>
+                <legend className="mb-3 text-[14px] text-fg-2">What do you need?</legend>
+                <div className="flex flex-wrap gap-2">
+                  {SERVICES.map((s) => (
+                    <button
+                      key={s.slug}
+                      type="button"
+                      aria-pressed={form.service === s.name}
+                      onClick={() => setForm((f) => ({ ...f, service: f.service === s.name ? '' : s.name }))}
+                      className={cn('rounded-full border px-4 py-2 text-[14px] transition-colors', form.service === s.name ? 'border-brand bg-brand text-white' : 'border-line-2 text-fg-2 hover:border-fg/40 hover:text-fg')}
+                    >
+                      {s.name}
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+              <label className={label}>Project details *
+                <textarea required name="message" rows={5} value={form.message} onChange={update} placeholder="What does your company do, and what should this project achieve?" className={field} />
+              </label>
+              <Button type="submit" className="w-full sm:w-auto sm:justify-self-start" disabled={status === 'sending'}>
+                {status === 'sending' ? 'Sending…' : 'Send & unlock price guide'}
+              </Button>
+              {!FORM_KEY && <p className="text-[13px] text-muted">Your message opens in WhatsApp, ready to send.</p>}
+              {status === 'error' && <p role="alert" className="text-[15px] text-red-400">Something went wrong. Please email {SITE.email} or message us on WhatsApp.</p>}
+            </form>
+          )}
+        </Reveal>
+      </div>
+    </section>
+  );
+}

@@ -1,22 +1,20 @@
 {
-  "name": "gofs",
+  "name": "gofs-tech",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && vite build --ssr src/entry-server.jsx --outDir dist-ssr && node scripts/prerender.mjs",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "node scripts/serve-dist.mjs dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.38.0",
     "lucide-react": "^1.16.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "react-helmet-async": "^3.0.0",
     "react-router-dom": "^7.15.1",
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.0"
